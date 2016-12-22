@@ -50,7 +50,11 @@ namespace PcapngFile
             this.MajorVersion = reader.ReadUInt16();
             this.MinorVersion = reader.ReadUInt16();
             this.SectionLength = reader.ReadInt64();
-            this.ReadOptions(reader);
+            var totalExceptOptionLength = this.GetRemainingLength(reader);
+            if (this.TotalLength != totalExceptOptionLength)
+            {
+                this.ReadOptions(reader);
+            }
             this.ReadClosingField(reader);
         }
 
