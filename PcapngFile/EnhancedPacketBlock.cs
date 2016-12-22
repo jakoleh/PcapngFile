@@ -66,7 +66,7 @@ namespace PcapngFile
             this.DataLength = reader.ReadInt32();
             this.Data = reader.ReadBytes(this.CapturedLength);
 
-            int remainderLength = this.DataLength % DataAlignmentBoundary;
+            int remainderLength = this.CapturedLength % DataAlignmentBoundary;
             if (remainderLength > 0)
             {
                 int paddingLength = DataAlignmentBoundary - remainderLength;
